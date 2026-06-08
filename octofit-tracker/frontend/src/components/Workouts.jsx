@@ -4,6 +4,7 @@ const getApiBase = () => {
   const cs = import.meta.env.VITE_CODESPACE_NAME
   return cs ? `https://${cs}-8000.app.github.dev` : 'http://localhost:8000'
 }
+// Example API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/
 
 export default function Workouts() {
   const [items, setItems] = useState([])
