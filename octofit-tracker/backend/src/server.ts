@@ -9,10 +9,15 @@ import workoutsRouter from './routes/workouts'
 const app = express()
 const port = process.env.PORT ? Number(process.env.PORT) : 8000
 
+// Build API base URL based on environment
+const apiBaseUrl = process.env.CODESPACE_NAME
+  ? `https://${process.env.CODESPACE_NAME}-8000.app.github.dev`
+  : `http://localhost:${port}`
+
 app.use(express.json())
 
 app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' })
+  res.json({ status: 'ok', apiBaseUrl })
 })
 
 app.use('/api/users', usersRouter)
@@ -23,6 +28,7 @@ app.use('/api/workouts', workoutsRouter)
 
 app.listen(port, async () => {
   console.log(`Backend listening on http://localhost:${port}`)
+  console.log(`API Base URL: ${apiBaseUrl}`)
 
   try {
     await connectDatabase()
