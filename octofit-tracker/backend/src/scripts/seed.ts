@@ -1,5 +1,5 @@
 /**
- * Seed script to populate test data into the octofit_db database
+ * Seed the octofit_db database with test data
  *
  * Usage: npm run seed
  *
